@@ -208,6 +208,8 @@ export const RulerPicker = ({
     ({ index }) => {
       return (
         <RulerPickerItem
+          min={min}
+          step={step}
           isLast={index === arrData.length - 1}
           index={index}
           shortStepHeight={shortStepHeight}

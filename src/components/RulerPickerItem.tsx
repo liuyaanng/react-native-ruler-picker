@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 export type RulerPickerItemProps = {
   /**
@@ -39,6 +39,8 @@ export type RulerPickerItemProps = {
    * @default 'gray'
    */
   longStepColor: string;
+  min: number;
+  step: number;
 };
 
 type Props = {
@@ -56,10 +58,12 @@ export const RulerPickerItem = React.memo(
     stepWidth,
     shortStepColor,
     longStepColor,
+    min,
+    step,
   }: Props) => {
     const isLong = index % 10 === 0;
     const height = isLong ? longStepHeight : shortStepHeight;
-
+    const value = min + index * step;
     return (
       <View
         style={[
@@ -82,6 +86,23 @@ export const RulerPickerItem = React.memo(
             },
           ]}
         />
+
+        {isLong && (
+          <Text
+            style={{
+              position: 'absolute',
+              bottom: 20,
+              width: 40,
+              textAlign: 'center',
+              color: longStepColor,
+              fontSize: 16,
+              transform: [{ translateX: -20 + stepWidth / 2 }],
+            }}
+            numberOfLines={1}
+          >
+            {value}
+          </Text>
+        )}
       </View>
     );
   }
