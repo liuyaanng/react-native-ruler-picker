@@ -229,6 +229,8 @@ export const RulerPicker = ({
       longStepHeight,
       shortStepColor,
       shortStepHeight,
+      min,
+      step,
     ]
   );
 
